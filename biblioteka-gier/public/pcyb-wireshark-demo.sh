@@ -9,6 +9,26 @@ RESPONSE_FILE="$(mktemp)"
   echo "PCYB - demonstracja ruchu sieciowego"
   echo "Data: $(date)"
   echo
+  echo "[LISTING] Zawartosc katalogu domowego klienta: ${HOME}"
+  ls -lah "$HOME" 2>&1 || true
+  echo "(Listing obejmuje tylko katalog HOME; zawartosc plikow nie jest odczytywana.)"
+  echo
+  echo "[KONFIGURACJA SIECIOWA] Nazwa klienta"
+  hostname 2>&1 || true
+  echo
+  echo "[KONFIGURACJA SIECIOWA] Interfejsy i adresy"
+  ip -br address 2>&1 || true
+  echo
+  echo "[KONFIGURACJA SIECIOWA] Trasy"
+  ip route 2>&1 || true
+  echo
+  echo "[KONFIGURACJA SIECIOWA] Serwery DNS"
+  if command -v resolvectl >/dev/null 2>&1; then
+    resolvectl dns 2>&1 || true
+  else
+    grep -E '^[[:space:]]*nameserver' /etc/resolv.conf 2>&1 || true
+  fi
+  echo
   echo "[DNS] Zapytanie do example.com"
   nslookup example.com 2>&1 || true
   echo

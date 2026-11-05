@@ -16,7 +16,9 @@ You may also see any lint errors in the console.
 
 ## Demonstracja w Wiresharku
 
-Przycisk `POBIERZ` pobiera plik `pcyb-wireshark-demo.sh`. Plik nalezy uruchomic recznie na Ubuntu. Skrypt zapisuje log na pulpicie, otwiera go w domyslnej aplikacji i generuje ruch DNS, ICMP oraz HTTPS wyłącznie do `example.com`. Nastepnie wysyla tylko ten jawny log metoda HTTP POST do `http://192.168.56.10:8080/telemetry`.
+Przycisk `POBIERZ` pobiera plik `pcyb-wireshark-demo.sh`. Plik nalezy uruchomic recznie na Ubuntu. Skrypt zapisuje w logu ograniczony listing katalogu domowego klienta `HOME` (jeden poziom, bez odczytywania tresci plikow), otwiera log w domyslnej aplikacji i generuje ruch DNS, ICMP oraz HTTPS wyłącznie do `example.com`. Do logu dodaje tez ograniczona konfiguracje sieciowa klienta: nazwe hosta, interfejsy i adresy, trasy oraz serwery DNS. Nastepnie wysyla tylko ten jawny log metoda HTTP POST do `http://192.168.56.10:8080/telemetry`.
+
+Listing nie jest rekurencyjny. Celowo nie zbieramy haseł, zawartości plików, historii przeglądarki, ciasteczek ani kluczy SSH.
 
 Na kliencie nadaj skryptowi prawo wykonywania i uruchom go:
 
@@ -33,7 +35,7 @@ Na maszynie serwerowej Ubuntu uruchom:
 python server/telemetry_server.py
 ```
 
-Odebrane logi beda zapisywane w `server/received_telemetry/`. Przed uruchomieniem cwiczenia ustaw w skrypcie BAT adres serwera zgodny z prywatna siecia wirtualna. Odbiornik przyjmuje tylko endpoint `/telemetry`, ogranicza rozmiar danych do 64 KiB i nie odczytuje zadnych plikow z klienta.
+Odebrane logi beda zapisywane w `server/received_telemetry/`. Przed uruchomieniem cwiczenia ustaw w skrypcie SH adres serwera zgodny z prywatna siecia wirtualna. Odbiornik przyjmuje tylko endpoint `/telemetry`, ogranicza rozmiar danych do 64 KiB i nie odczytuje zadnych plikow z klienta.
 
 Przy uruchomionym Wiresharku mozna uzyc filtra:
 
