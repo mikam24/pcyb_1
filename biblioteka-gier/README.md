@@ -14,6 +14,26 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
+## Demonstracja w Wiresharku
+
+Przycisk `POBIERZ` pobiera plik `pcyb-wireshark-demo.bat`. Plik nalezy uruchomic recznie w systemie Windows. Skrypt zapisuje log na pulpicie, otwiera go w Notatniku i generuje ruch DNS, ICMP oraz HTTPS wyłącznie do `example.com`. Nastepnie wysyla tylko ten jawny log metoda HTTP POST do `http://192.168.56.10:8080/telemetry`.
+
+### Odbiornik na maszynie serwerowej
+
+Na maszynie serwerowej uruchom:
+
+```text
+python server/telemetry_server.py
+```
+
+Odebrane logi beda zapisywane w `server/received_telemetry/`. Przed uruchomieniem cwiczenia ustaw w skrypcie BAT adres serwera zgodny z prywatna siecia wirtualna. Odbiornik przyjmuje tylko endpoint `/telemetry`, ogranicza rozmiar danych do 64 KiB i nie odczytuje zadnych plikow z klienta.
+
+Przy uruchomionym Wiresharku mozna uzyc filtra:
+
+```text
+dns || icmp || tcp.port == 443
+```
+
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.\

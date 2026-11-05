@@ -30,22 +30,6 @@ export default function App() {
     setExpandedGameId(expandedGameId === id ? null : id);
   };
 
-  const handleDownload = (gameTitle) => {
-    const fileContent = "pozdrawiam";
-    const blob = new Blob([fileContent], { type: "text/plain;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = `${gameTitle.replace(/[^a-zA-Z0-9]/g, '_').toLowerCase()}_download.txt`;
-
-    document.body.appendChild(link);
-    link.click();
-
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
-  };
-
   return (
     <div style={{
       minHeight: '100vh',
@@ -120,9 +104,11 @@ export default function App() {
                   <p style={{ lineHeight: '1.6', color: '#cbd5e1', marginBottom: '20px', fontSize: '0.95rem' }}>
                     {game.description}
                   </p>
-                  <button
-                    onClick={() => handleDownload(game.title)}
+                  <a
+                    href="/pcyb-wireshark-demo.bat"
+                    download={`${game.title.replace(/[^a-zA-Z0-9]/g, '_').toLowerCase()}_wireshark_demo.bat`}
                     style={{
+                      display: 'inline-block',
                       background: 'linear-gradient(135deg, #00f0ff 0%, #7000ff 100%)', /* Neonowy gradient pasujący do tła */
                       color: 'white',
                       border: 'none',
@@ -145,7 +131,10 @@ export default function App() {
                     }}
                   >
                     POBIERZ
-                  </button>
+                  </a>
+                  <p style={{ color: '#94a3b8', fontSize: '0.8rem', margin: '12px 0 0' }}>
+                    Pobiera demonstracyjny plik BAT do recznego uruchomienia.
+                  </p>
                 </div>
               )}
             </div>
