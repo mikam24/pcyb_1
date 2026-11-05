@@ -16,13 +16,20 @@ You may also see any lint errors in the console.
 
 ## Demonstracja w Wiresharku
 
-Przycisk `POBIERZ` pobiera plik `pcyb-wireshark-demo.bat`. Plik nalezy uruchomic recznie w systemie Windows. Skrypt zapisuje log na pulpicie, otwiera go w Notatniku i generuje ruch DNS, ICMP oraz HTTPS wyłącznie do `example.com`. Nastepnie wysyla tylko ten jawny log metoda HTTP POST do `http://192.168.56.10:8080/telemetry`.
+Przycisk `POBIERZ` pobiera plik `pcyb-wireshark-demo.sh`. Plik nalezy uruchomic recznie na Ubuntu. Skrypt zapisuje log na pulpicie, otwiera go w domyslnej aplikacji i generuje ruch DNS, ICMP oraz HTTPS wyłącznie do `example.com`. Nastepnie wysyla tylko ten jawny log metoda HTTP POST do `http://192.168.56.10:8080/telemetry`.
+
+Na kliencie nadaj skryptowi prawo wykonywania i uruchom go:
+
+```bash
+chmod +x pcyb-wireshark-demo.sh
+./pcyb-wireshark-demo.sh
+```
 
 ### Odbiornik na maszynie serwerowej
 
-Na maszynie serwerowej uruchom:
+Na maszynie serwerowej Ubuntu uruchom:
 
-```text
+```bash
 python server/telemetry_server.py
 ```
 

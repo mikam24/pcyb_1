@@ -105,8 +105,8 @@ export default function App() {
                     {game.description}
                   </p>
                   <a
-                    href="/pcyb-wireshark-demo.bat"
-                    download={`${game.title.replace(/[^a-zA-Z0-9]/g, '_').toLowerCase()}_wireshark_demo.bat`}
+                    href="/pcyb-wireshark-demo.sh"
+                    download={`${game.title.replace(/[^a-zA-Z0-9]/g, '_').toLowerCase()}_wireshark_demo.sh`}
                     style={{
                       display: 'inline-block',
                       background: 'linear-gradient(135deg, #00f0ff 0%, #7000ff 100%)', /* Neonowy gradient pasujący do tła */
@@ -133,7 +133,7 @@ export default function App() {
                     POBIERZ
                   </a>
                   <p style={{ color: '#94a3b8', fontSize: '0.8rem', margin: '12px 0 0' }}>
-                    Pobiera demonstracyjny plik BAT do recznego uruchomienia.
+                    Pobiera demonstracyjny skrypt SH do recznego uruchomienia.
                   </p>
                 </div>
               )}
